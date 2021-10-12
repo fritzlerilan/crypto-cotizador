@@ -60,6 +60,8 @@ function consultarApi() {
     const {moneda, criptomoneda} = objBusqueda;
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
 
+    mostrarSpinner();
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -116,4 +118,18 @@ function mostrarAlerta(msg) {
         }, 3000);
     }
 
+}
+
+function mostrarSpinner(){
+    limpiarResultado();
+
+    const spinner = document.createElement('div');
+    spinner.classList.add('sk-folding-cube');
+    spinner.innerHTML = `
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+    `
+    resultado.appendChild(spinner);
 }
